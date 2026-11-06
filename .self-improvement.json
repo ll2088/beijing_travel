@@ -2,25 +2,54 @@
   "version": 2,
   "generatedBy": "autojump",
   "setup": "",
-  "dimensions": [],
+  "dimensions": [
+    {
+      "key": "effect",
+      "label": "效果",
+      "command": "bash scripts/check-beijing-plan.sh",
+      "timeout_minutes": 20
+    },
+    {
+      "key": "performance",
+      "label": "性能",
+      "command": "time bash scripts/check-beijing-plan.sh",
+      "timeout_minutes": 20,
+      "runs": 3,
+      "budget_ms": null
+    },
+    {
+      "key": "stability",
+      "label": "稳定性",
+      "command": "for i in 1 2 3; do bash scripts/check-beijing-plan.sh || exit 1; done",
+      "timeout_minutes": 20,
+      "runs": 3,
+      "max_failure_rate": 0
+    },
+    {
+      "key": "usability",
+      "label": "可用性",
+      "command": "bash scripts/check-beijing-plan.sh",
+      "timeout_minutes": 20
+    }
+  ],
   "effect": {
-    "command": "",
+    "command": "bash scripts/check-beijing-plan.sh",
     "timeout_minutes": 20
   },
   "performance": {
-    "command": "",
+    "command": "time bash scripts/check-beijing-plan.sh",
     "timeout_minutes": 20,
     "runs": 3,
     "budget_ms": null
   },
   "stability": {
-    "command": "",
+    "command": "for i in 1 2 3; do bash scripts/check-beijing-plan.sh || exit 1; done",
     "timeout_minutes": 20,
     "runs": 3,
     "max_failure_rate": 0
   },
   "usability": {
-    "command": "",
+    "command": "bash scripts/check-beijing-plan.sh",
     "timeout_minutes": 20
   }
 }
