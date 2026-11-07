@@ -12,7 +12,7 @@
     {
       "key": "performance",
       "label": "性能",
-      "command": "time bash scripts/check-beijing-plan.sh",
+      "command": "bash scripts/check-beijing-plan.sh",
       "timeout_minutes": 20,
       "runs": 3,
       "budget_ms": null
@@ -20,7 +20,7 @@
     {
       "key": "stability",
       "label": "稳定性",
-      "command": "for i in 1 2 3; do bash scripts/check-beijing-plan.sh || exit 1; done",
+      "command": "bash scripts/check-beijing-plan.sh",
       "timeout_minutes": 20,
       "runs": 3,
       "max_failure_rate": 0
@@ -37,13 +37,13 @@
     "timeout_minutes": 20
   },
   "performance": {
-    "command": "time bash scripts/check-beijing-plan.sh",
+    "command": "bash scripts/check-beijing-plan.sh",
     "timeout_minutes": 20,
     "runs": 3,
     "budget_ms": null
   },
   "stability": {
-    "command": "for i in 1 2 3; do bash scripts/check-beijing-plan.sh || exit 1; done",
+    "command": "bash scripts/check-beijing-plan.sh",
     "timeout_minutes": 20,
     "runs": 3,
     "max_failure_rate": 0
