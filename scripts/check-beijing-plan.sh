@@ -23,6 +23,27 @@ grep -q '餐饮' "$PLAN"
 # 索引：README 链接
 grep -q 'docs/beijing-4d3n-plan.md' README.md
 
+# README 故宫预约规则小节必备条目
+README_FC_SECTION=$(awk '/^- 故宫预约规则：/{flag=1} flag{print} /^- 天安门广场：/{flag=0}' README.md)
+test -n "$README_FC_SECTION"
+echo "$README_FC_SECTION" | grep -q '放票时间'
+echo "$README_FC_SECTION" | grep -q '证件要求'
+echo "$README_FC_SECTION" | grep -q '闭馆日'
+
+# README 与计划文档故宫规则关键字段一致性
+for field in '放票时间' '证件要求' '闭馆日'; do
+  grep -q "$field" README.md
+  grep -q "$field" "$PLAN"
+done
+grep -q '提前7天' README.md
+grep -q '提前 7 天' "$PLAN"
+grep -q '20:00' README.md
+grep -q '20:00' "$PLAN"
+grep -q '身份证' README.md
+grep -q '身份证' "$PLAN"
+grep -q '周一闭馆' README.md
+grep -q '周一闭馆' "$PLAN"
+
 # 一致性：标题天数、逐日小节数量、预算合计
 grep -q '4天3晚' "$PLAN"
 test "$(grep -Ec '^###? *(Day|第) *[1-4] *(天)?' "$PLAN")" -eq 4
