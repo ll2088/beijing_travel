@@ -23,6 +23,15 @@ grep -q '餐饮' "$PLAN"
 # 索引：README 链接
 grep -q 'docs/beijing-4d3n-plan.md' README.md
 
+# 故宫预约规则：README 放票时间与计划文档一致
+README_FORBIDDEN_CITY_SECTION=$(awk '/^- 故宫预约规则：/{flag=1; next} /^- /{if(flag) exit} flag' README.md)
+test -n "$README_FORBIDDEN_CITY_SECTION"
+echo "$README_FORBIDDEN_CITY_SECTION" | grep -q '预约'
+echo "$README_FORBIDDEN_CITY_SECTION" | grep -q '放票'
+echo "$README_FORBIDDEN_CITY_SECTION" | grep -q '提前7天'
+echo "$README_FORBIDDEN_CITY_SECTION" | grep -q '20:00'
+grep -q '提前 7 天 20:00 放票' "$PLAN"
+
 # 一致性：标题天数、逐日小节数量、预算合计
 grep -q '4天3晚' "$PLAN"
 test "$(grep -Ec '^###? *(Day|第) *[1-4] *(天)?' "$PLAN")" -eq 4
